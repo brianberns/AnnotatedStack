@@ -2,21 +2,28 @@
 
 module Program =
 
-    let test1 () =
-        let stack =
-            Stack.empty Int.addition String.length
-                |> Stack.push "hello"
-                |> Stack.push "world"
-        printfn $"{stack.Contents}"
+    let windows monoid window annotate elems =
 
-    let test2 () =
-        let str, q =
-            Queue.empty Int.addition String.length
-                |> Queue.enqueue "one"
-                |> Queue.enqueue "two"
-                |> Queue.enqueue "three"
-                |> Queue.dequeue
-                |> Option.get
-        printfn $"{str}, {q.Contents}"
+        let start, rest = List.splitAt window elems
 
-    test2 ()
+        let startQ =
+            List.fold
+                (flip Queue.enqueue)
+                (Queue.empty monoid annotate)
+                start
+    
+        let rec go (q : Queue<_, _>) elems =
+            Queue.measure q ::
+                match elems with
+                    | [] -> []
+                    | a :: tail ->
+                        go
+                            (Queue.enqueue
+                                a
+                                (Queue.drop1 q))
+                                tail
+
+        go startQ rest
+
+    windows Max.monoid 3 Max [1;4;2;8;9;4;4;6]
+        |> printfn "%A"   // [Max 4, Max 8, Max 9, Max 9, Max 9, Max 6]
