@@ -21,7 +21,7 @@ module Program =
                             (Queue.enqueue
                                 a
                                 (Queue.drop1 q))
-                                tail
+                            tail
 
         go startQ rest
 
