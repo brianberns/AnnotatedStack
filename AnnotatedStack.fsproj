@@ -9,6 +9,7 @@
     <Compile Include="Prelude.fs" />
     <Compile Include="Monoid.fs" />
     <Compile Include="Stack.fs" />
+    <Compile Include="Queue.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
