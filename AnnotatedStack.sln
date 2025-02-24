@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35818.85 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AnnotatedStack", "AnnotatedStack.fsproj", "{42B7408C-F52B-4E16-959B-33102C730439}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42B7408C-F52B-4E16-959B-33102C730439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42B7408C-F52B-4E16-959B-33102C730439}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42B7408C-F52B-4E16-959B-33102C730439}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42B7408C-F52B-4E16-959B-33102C730439}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B489410C-DD80-4492-9E89-03ABE4C6D501}
+	EndGlobalSection
+EndGlobal
