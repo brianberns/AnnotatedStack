@@ -11,7 +11,7 @@ type Queue<'m, 'a> =
         this.Front.Size + this.Back.Size
 
     member this.Measure =
-        this.Monoid.Append
+        this.Monoid.Operation
             this.Front.Measure
             this.Back.Measure
 
@@ -54,7 +54,8 @@ module Queue =
 
     let windows monoid window annotate elems =
 
-        let start, rest = List.splitAt window elems
+        let start, rest =
+            List.splitAt window elems
 
         let startQ =
             List.fold

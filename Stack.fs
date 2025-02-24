@@ -29,7 +29,7 @@ module Stack =
                 Size = stack.Size + 1
                 Contents =
                     let m =
-                        stack.Monoid.Append
+                        stack.Monoid.Operation
                             (stack.Annotate a)
                             stack.Measure
                     (m, a) :: stack.Contents
@@ -48,6 +48,7 @@ module Stack =
                 Some (a, stack')
 
     let reverse stack =
-        (empty stack.Monoid stack.Annotate,
-        List.map snd stack.Contents)
-            ||> List.fold (flip push)
+        List.fold
+            (flip push)
+            (empty stack.Monoid stack.Annotate)
+            (List.map snd stack.Contents)

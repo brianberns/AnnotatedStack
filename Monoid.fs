@@ -3,7 +3,7 @@
 type Monoid<'m> =
     {
         Identity : 'm
-        Append : 'm -> 'm -> 'm
+        Operation : 'm -> 'm -> 'm
     }
 
 type Max<'a> =
@@ -12,7 +12,7 @@ type Max<'a> =
 
 module Max =
 
-    let append ma mb =
+    let max ma mb =
         match ma, mb with
             | NegInf, a
             | a, NegInf -> a
@@ -21,7 +21,7 @@ module Max =
     let monoid : Monoid<Max<'a>> =
         {
             Identity = NegInf
-            Append = append
+            Operation = max
         }
 
 type Min<'a> =
@@ -30,7 +30,7 @@ type Min<'a> =
 
 module Min =
 
-    let append ma mb =
+    let min ma mb =
         match ma, mb with
             | PosInf, a
             | a, PosInf -> a
@@ -39,5 +39,5 @@ module Min =
     let monoid : Monoid<Min<'a>> =
         {
             Identity = PosInf
-            Append = append
+            Operation = min
         }
