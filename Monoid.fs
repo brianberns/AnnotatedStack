@@ -23,3 +23,21 @@ module Max =
             Identity = Max LanguagePrimitives.GenericZero<'a>
             Append = append
         }
+
+type Min<'a> =
+    | PosInf
+    | Min of 'a
+
+module Min =
+
+    let append ma mb =
+        match ma, mb with
+            | PosInf, a
+            | a, PosInf -> a
+            | Min a, Min b -> Min (min a b)
+
+    let inline monoid<'a when 'a : (static member Zero: 'a) and 'a : comparison> =
+        {
+            Identity = Min LanguagePrimitives.GenericZero<'a>
+            Append = append
+        }
