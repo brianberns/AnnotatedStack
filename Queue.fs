@@ -51,3 +51,24 @@ module Queue =
         match dequeue q with
             | None -> q
             | Some (_, q') -> q'
+
+    let windows monoid window annotate elems =
+
+        let start, rest = List.splitAt window elems
+
+        let startQ =
+            List.fold
+                (flip enqueue)
+                (empty monoid annotate)
+                start
+    
+        let rec go (q : Queue<_, _>) elems =
+            q.Measure ::
+                match elems with
+                    | [] -> []
+                    | a :: tail ->
+                        go
+                            (enqueue a (drop1 q))
+                            tail
+
+        go startQ rest
