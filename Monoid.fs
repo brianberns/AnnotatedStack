@@ -18,9 +18,9 @@ module Max =
             | a, NegInf -> a
             | Max a, Max b -> Max (max a b)
 
-    let inline monoid<'a when 'a : (static member Zero: 'a) and 'a : comparison> =
+    let monoid : Monoid<Max<'a>> =
         {
-            Identity = Max LanguagePrimitives.GenericZero<'a>
+            Identity = NegInf
             Append = append
         }
 
@@ -36,8 +36,8 @@ module Min =
             | a, PosInf -> a
             | Min a, Min b -> Min (min a b)
 
-    let inline monoid<'a when 'a : (static member Zero: 'a) and 'a : comparison> =
+    let monoid : Monoid<Min<'a>> =
         {
-            Identity = Min LanguagePrimitives.GenericZero<'a>
+            Identity = PosInf
             Append = append
         }
