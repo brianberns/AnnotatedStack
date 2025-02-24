@@ -27,9 +27,6 @@ module Queue =
             Back = Stack.empty monoid annotate
         }
 
-    let measure (q : Queue<_, _>) =
-        q.Measure
-
     let enqueue a q =
         {
             q with

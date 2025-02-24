@@ -13,7 +13,7 @@ module Program =
                 start
     
         let rec go (q : Queue<_, _>) elems =
-            Queue.measure q ::
+            q.Measure ::
                 match elems with
                     | [] -> []
                     | a :: tail ->
