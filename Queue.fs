@@ -53,6 +53,16 @@ module Queue =
             | Some (_, q') -> q'
 
     let windows monoid window annotate elems =
+    
+        let rec go elems (q : Queue<_, _>) =
+            q.Measure ::
+                match elems with
+                    | [] -> []
+                    | a :: tail ->
+                        q
+                            |> drop1
+                            |> enqueue a
+                            |> go tail
 
         let start, rest =
             List.splitAt window elems
@@ -62,14 +72,5 @@ module Queue =
                 (flip enqueue)
                 (empty monoid annotate)
                 start
-    
-        let rec go (q : Queue<_, _>) elems =
-            q.Measure ::
-                match elems with
-                    | [] -> []
-                    | a :: tail ->
-                        go
-                            (enqueue a (drop1 q))
-                            tail
 
-        go startQ rest
+        go rest startQ
